@@ -9,7 +9,7 @@ variable "cluster-environment" {
 }
 
 variable "node-instance-type" {
-    default     = "m4.2xlarge"
+    default     = "m4.large"
     description = "An AWS instance type for the cluster nodes."
 }
 
@@ -25,4 +25,20 @@ variable "cluster-vpc-id" {
 variable "cluster-subnets" {
     type        = "list"
     description = "A list of subnet IDs to place the cluster nodes in.  If the list is shorter than the number of nodes, Terraform iterates over the list from the start, and will place multiple nodes in the same subnets."
+}
+
+variable "ec2_key_name" {
+    type        = "string"
+    description = "The name of the AWS ec2 keypair to use for accessing the instance"
+}
+
+variable "elastic-user" {
+    type        = "string"
+    description = "A username to use as the base user created at the time elasticsearch is started"
+    default     = "elastic"
+}
+
+variable "elastic-password" {
+    type        = "string"
+    description = "A base64 encoded password to use as the basic password for elasticsearch"
 }
